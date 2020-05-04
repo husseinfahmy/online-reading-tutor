@@ -484,3 +484,24 @@ export const setCurrentLessonParentWorld = (worldNameForLesson) => {
   // Set the current lesson's parent here
   Constants.CURRENT_LESSON_PARENT = worldNameForLesson;
 }
+
+export const getUserName = () => {
+  return DataObject.Data.name;
+}
+
+export const getStreakCount = () => {
+  return DataObject.Data.streak.streak_count;
+}
+
+export const getTotalBadgesAcquired = () => {
+  let count = 0;
+  for(let i = 0; i < DataObject.Data.BADGES.length; i++) {
+    for(let j = 0; j < DataObject.Data.BADGES[i].length; j++) {
+      if(DataObject.Data.BADGES[i][j].badgeState) {
+        count++;
+      }
+    }
+  }
+
+  return count;
+}

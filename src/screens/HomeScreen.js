@@ -34,7 +34,7 @@ const HomeScreen = (props) => {
     return (
       <View style={styles.container}>
        <View>
-        <Profile badges={props.badges}/>
+        <Profile data={props.data}/>
         <Footer navigation={props.navigation}/>
         </View>
       </View>
