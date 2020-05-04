@@ -8,6 +8,7 @@ import globalStyles from "../styles/global";
 
 import {
     renderWorldBadges,
+    renderAllAcquiredBadges,
     getUserName,
     getStreakCount,
     getTotalBadgesAcquired
@@ -161,22 +162,7 @@ export default class Profile extends React.Component {
                 <View style={styles.badgeContainer}>
                     <Text style={styles.badgeText}> Badges Earned </Text>
                     <ScrollView horizontal={true} style={styles.badgeContainer}>
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
+                        { renderAllAcquiredBadges() }
                     </ScrollView>
                 </View>
 

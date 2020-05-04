@@ -153,6 +153,33 @@ export const alertBadgeAcquired = (badgeDesc) => {
   );
 };
 
+export const renderAllAcquiredBadges = () => {
+  let ImageTags = [];
+  let badges = DataObject.Data.BADGES;
+  console.log(badges);
+
+  for(let i = 0; i < badges.length; i++) {
+    for(let j = 0; j < badges[i].length; j++) {
+      if(badges[i][j].badgeState == true) {
+        ImageTags.push(
+          <Image
+            key={badges[i][j].badgeName}
+            source={returnImgForRawImgName(badges[i][j].badgeImage)}
+            style={{
+              width: 100,
+              height: 120,
+              marginLeft: 10,
+              marginRight: 10,
+              opacity: badges[i][j].badgeState ? 1 : 0.5,
+            }}
+          />
+        );
+      }
+    }
+  }
+  return ImageTags;
+}
+
 // Renders all "World" badges
 export const renderWorldBadges = (world_props) => {
   let WorldTags = [];
