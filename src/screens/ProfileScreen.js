@@ -3,10 +3,11 @@ import { StyleSheet, ImageBackground, View } from "react-native";
 import Profile from "../components/Profile";
 
 const ProfileScreen = (props) => {
+  console.log(props);
     return (
       <View style={styles.container}>
   
-        <Profile badges={props.badges} />
+        <Profile badges={props.data.BADGES} />
       </View>
     );
   };

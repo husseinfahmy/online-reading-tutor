@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
+import { Text, View, SafeAreaView, StyleSheet, ScrollView, Image, Button, ImageBackground, Dimensions, TouchableOpacity } from "react-native";
+
 
 // for the navigation
 import "react-native-gesture-handler";
@@ -14,16 +17,36 @@ import LessonScreen from "./src/screens/LessonScreen";
 import MinigameScreen from "./src/screens/MinigameScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 
+// import Constants
+import Constants from "./src/components/Constants";
+
 // import styles
 import variables from "./src/styles/variables";
 import * as DataObject from "./src/components/Database";
 import { startUp } from "./src/components/Helpers";
 
+// Import asyncstorage
+import AsyncStorage from "@react-native-community/async-storage";
+
 const Stack = createStackNavigator();
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
   // Start up stuff before rendering anything
   startUp();
+
+  useEffect(() => {
+    AsyncStorage.getItem("data").then((token) => {
+      setIsLoading(false);
+    });
+  }, [])
+
+  if(isLoading) {
+    return (<View><Text>Loading.....</Text></View>);
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -40,8 +63,11 @@ function App() {
         <Stack.Screen
           name="Home"
           options={{ title: "Home" }}
-          component={HomeScreen}
-        />
+        >
+          {(props) => (
+            <HomeScreen {...props} data={DataObject.Data} />
+          )}
+        </Stack.Screen>
         <Stack.Screen
           name="Lessons"
           options={{ title: "Lessons" }}
@@ -69,7 +95,7 @@ function App() {
         </Stack.Screen>
         <Stack.Screen name="Profile">
           {(props) => (
-            <ProfileScreen {...props} badges={DataObject.Data.BADGES} />
+            <ProfileScreen {...props} data={DataObject.Data} />
           )}
         </Stack.Screen>
       </Stack.Navigator>
