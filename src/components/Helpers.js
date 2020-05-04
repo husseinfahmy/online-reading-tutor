@@ -174,6 +174,28 @@ export const renderWorldBadges = (world_props) => {
   return WorldTags;
 };
 
+
+// Renders all "World" badges
+export const renderWorldBadges = (world_props) => {
+  let WorldTags = [];
+  for (let i = 0; i < world_props.length; i++) {
+    WorldTags.push(
+      <Image
+        key={world_props[i].badgeName}
+        source={returnImgForRawImgName(world_props[i].badgeImage)}
+        style={{
+          width: 100,
+          height: 120,
+          marginLeft: 10,
+          marginRight: 10,
+          opacity: world_props[i].badgeState ? 1 : 0.5,
+        }}
+      />
+    );
+  }
+  return WorldTags;
+};
+
 // Render all "Streak" Badges
 export const renderStreakImages = (streak_props) => {
   let StreakTags = [];
