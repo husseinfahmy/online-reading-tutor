@@ -8,9 +8,6 @@ import globalStyles from "../styles/global";
 
 import {
     renderWorldBadges,
-    getUserName,
-    getStreakCount,
-    getTotalBadgesAcquired
 } from "../components/Helpers.js";
 import { render } from "react-dom";
 
@@ -148,18 +145,25 @@ export default class Profile extends React.Component {
                             <Button title="" onPress={() => this.toggleEditState()} />
                         </View>
                     </View>
-                    <Text style={styles.nameText}> { getUserName() } </Text>
+                    <Text style={styles.nameText}> John Doe </Text>
                     <View style={styles.streakdisplay}>
                         <View style={styles.streakContainer}>
-                        <Text style={styles.nameText}>{ getStreakCount() }</Text>
+
                         </View>
                         <View style={styles.streakContainer}>
-                        <Text style={styles.nameText}> { getTotalBadgesAcquired() } </Text>
+
                         </View>
                     </View>
                 </View>
                 <View style={styles.badgeContainer}>
+                <View style={{flexDirection: 'row'}}>
                     <Text style={styles.badgeText}> Badges Earned </Text>
+                    <View style={{ marginLeft: 110}} >
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Badges")} >
+                            <Text style={{fontSize: 20, right: 5}, styles.badgeText}> see more ></Text>
+                            </TouchableOpacity>
+                            </View>
+                    </View>
                     <ScrollView horizontal={true} style={styles.badgeContainer}>
                         <Image
                             source={require("../assets/badges/world_completion.png")}
@@ -179,7 +183,9 @@ export default class Profile extends React.Component {
                         />
                     </ScrollView>
                 </View>
-
+                <TouchableOpacity style={globalStyles.primaryBtn} onPress={() => this.props.navigation.navigate("Lessons")} >
+                            <Text style={globalStyles.primaryBtnText}>Start</Text>
+                            </TouchableOpacity>
                 <BottomSheet onDismiss={() => this.toggleEditState()} visible={editMode} height={modalHeight}>
           <View style={styles.tabContainer}>
             <TouchableOpacity onPress={()=>this.showImageFunc()}>
@@ -367,7 +373,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 20,
         marginBottom: 20,
-        marginLeft: 15
+        marginLeft: 15,
+        marginRight: 15
     },
 
     badgeContainer: {
