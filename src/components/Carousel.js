@@ -95,8 +95,8 @@ export default class CarouselCards extends React.Component  {
                 layout={"default"}
                 ref={ref => this.carousel = ref}
                 data={this.state.carouselItems}
-                sliderWidth={300}
-                itemWidth={300}
+                sliderWidth={400}
+                itemWidth={200}
                 renderItem={this._renderItem.bind(this)}
                 onSnapToItem = { index => this.setState({activeIndex:index}) }
                 removeClippedSubviews={false} />
@@ -106,6 +106,8 @@ export default class CarouselCards extends React.Component  {
     }
 
     goToFire = () => {
+      console.log("TEEEST" + this.state.carouselItems[this.state.activeIndex].short_key)
+      setCurrentLessonParentWorld(this.state.carouselItems[this.state.activeIndex].short_key);
       this.props.navigation.navigate('Game')
       this.setState({
         showModal: false
@@ -135,8 +137,10 @@ const styles = StyleSheet.create({
   button_unclickable: {
     backgroundColor: '#888888',
   },
-  countContainer: {
-    alignItems: "center",
-    padding: 10
+  visible: {
+    opacity: 100
+  },
+  hidden: {
+    opacity: 0
   }
 });
