@@ -80,7 +80,7 @@ function App() {
         />
         <Stack.Screen name="Lesson">
           {(props) => (
-            <LessonScreen {...props}/>
+            <LessonScreen {...props} />
           )}
         </Stack.Screen>
         <Stack.Screen
