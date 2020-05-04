@@ -3,10 +3,11 @@ import { Text, View } from "react-native";
 
 // local components
 import { Button } from "../components/index";
+import variables from '../styles/variables';
 
 function GameScreen({ navigation }) {
   return (
-    <View>
+    <View style={{ backgroundColor: variables.palette.gray.light, height: "100%", justifyContent: "center"}}>
       <Text>Game before the lesson!</Text>
       <Button
         text="Click here to play a minigame"

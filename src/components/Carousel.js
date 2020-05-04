@@ -68,7 +68,7 @@ export default class CarouselCards extends React.Component  {
                 <Text style={{
                   color: 'white',
                 }}>
-                  {item.text}
+                  {DataObject.Data.lesson_completion_per_world[item.short_key]["lessons_completed"] + "/" + Constants.TOTAL_LESSONS}
                 </Text>
               </View>
               <View style={{ height: Dimensions.get('window').height *0.2}}>
@@ -106,7 +106,7 @@ export default class CarouselCards extends React.Component  {
     }
 
     goToFire = () => {
-      console.log("TEEEST" + this.state.carouselItems[this.state.activeIndex].short_key)
+      console.log("TEEEST " + this.state.carouselItems[this.state.activeIndex].short_key + " " + this.state.carouselItems[this.state.activeIndex].text + " " + DataObject.Data.lesson_completion_per_world.fire_world["lessons_completed"])
       setCurrentLessonParentWorld(this.state.carouselItems[this.state.activeIndex].short_key);
       this.props.navigation.navigate('Game')
       this.setState({
