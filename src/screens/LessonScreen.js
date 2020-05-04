@@ -43,12 +43,12 @@ function LessonScreen(props) {
   return (
     <View style={styles.MainContainer}>
       <Text
-        style={styles.TextStyle}
+        style={styles.QuestionStyle}
         onPress={PlaySound.bind(this, current.question)}
       >
         {current.question}
       </Text>
-      <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
+      <View style={{ flex: 1, flexDirection: "row"}}>
         <Text
           style={styles.TextStyle}
           onPress={() => {
@@ -70,8 +70,8 @@ function LessonScreen(props) {
             }
           }}
         >
-          {" "}
-          {current.answer[0]}{" "}
+          {"   "}
+          {current.answer[0]}{"   "}
         </Text>
         <Text
           style={styles.TextStyle}
@@ -94,8 +94,8 @@ function LessonScreen(props) {
             }
           }}
         >
-          {" "}
-          {current.answer[1]}{" "}
+          {"   "}
+          {current.answer[1]}{"   "}
         </Text>
         <Text
           style={styles.TextStyle}
@@ -118,8 +118,8 @@ function LessonScreen(props) {
             }
           }}
         >
-          {" "}
-          {current.answer[2]}{" "}
+          {"   "}
+          {current.answer[2]}{"   "}
         </Text>
       </View>
 
@@ -142,7 +142,21 @@ const styles = StyleSheet.create({
   TextStyle: {
     fontSize: 30,
     textAlign: "center",
+    flex: 1,
+    flexDirection: "row", 
+    justifyContent: "center",
   },
+
+  QuestionStyle: {
+    marginTop: 125,
+    fontSize: 30,
+    textAlign: "center",
+    flex: 1,
+    flexDirection: "row", 
+    justifyContent: "center",
+    color: "#9C27B0",
+    fontWeight: "bold"
+  }
 });
 
 export default LessonScreen;
