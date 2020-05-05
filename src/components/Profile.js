@@ -66,11 +66,11 @@ export default class Profile extends React.Component {
                "image": Constants.BOT_VAMP
             }
          ]
-
+            
         };
-
+          
       }
-
+    
       toggleEditState() {
         this.setState((prevState) => {
           const newState = !prevState.editMode;
@@ -79,11 +79,11 @@ export default class Profile extends React.Component {
             showImage:false,
             showEyeImage: false,
             showMouthImage: false
-
+              
           };
         });
       }
-
+        
       showImageFunc = () => {
           this.setState({hair:"underline",eye:null,mouth:null,hairTextColour:"white", eyeTextColour: "#333333", mouthTextColour:  "#333333"});
           this.setState({showImage: true});
@@ -95,7 +95,7 @@ export default class Profile extends React.Component {
           this.setState({showEyeImage: true});
           this.setState({showImage: false});
           this.setState({showMouthImage: false});
-
+          
       }
       showMouthImageFunc = () => {
           this.setState({hair:null,eye:null,mouth:"underline",mouthTextColour:"white",hairTextColour: "#333333",eyeTextColour:  "#333333"});
@@ -112,7 +112,7 @@ export default class Profile extends React.Component {
       selectBottomImage = (index) => {
           this.setState({bottomImage: index});
       }
-
+        
       displayAvatar = () => {
           this.setState({hair:null,eye:null,mouth:null,hairTextColour: "#333333", eyeTextColour: "#333333", mouthTextColour:  "#333333"});
           this.setState({topImageFinal: this.state.topImage});
@@ -149,11 +149,7 @@ export default class Profile extends React.Component {
                             <Image style={styles.headBodyPart} source={this.state.Top[this.state.topImageFinal].image} />
                         </View>
                         <View style={styles.editbutton}>
-                        <Image
-                                style={styles.editbuttonIcon}
-                                source={require('../assets/icons/edit.png')}>
-                            </Image>
-                            <Button alt="edit-avatar" title="" onPress={() => this.toggleEditState()} />
+                            <Button title="" onPress={() => this.toggleEditState()} />
                         </View>
                     </View>
                     <Text style={styles.nameText}> John Doe </Text>
@@ -217,7 +213,7 @@ export default class Profile extends React.Component {
               <Text style={{ fontSize: 25, color:this.state.mouthTextColour, textDecorationLine: this.state.mouth }}>Mouth</Text>
             </TouchableOpacity>
           </View>
-
+            
           <View style={styles.imageTabContainer}>
             {this.state.showImage &&
               <View>
@@ -226,7 +222,7 @@ export default class Profile extends React.Component {
                   source={Constants.TOP_BRAIN} />
                 </TouchableOpacity>
               </View>}
-
+            
             {this.state.showImage &&
               <View>
                 <TouchableOpacity onPress={()=>this.selectTopImage(1)}>
@@ -234,7 +230,7 @@ export default class Profile extends React.Component {
                     source={Constants.TOP_HAIR} />
                 </TouchableOpacity>
               </View>}
-
+                
             {this.state.showEyeImage &&
               <View>
                 <TouchableOpacity onPress={()=>this.selectMidImage(0)}>
@@ -242,7 +238,7 @@ export default class Profile extends React.Component {
                 source={Constants.MID_CYCLOPS} />
                 </TouchableOpacity>
               </View>}
-
+            
             {this.state.showEyeImage &&
               <View>
                 <TouchableOpacity onPress={()=>this.selectMidImage(1)}>
@@ -250,7 +246,7 @@ export default class Profile extends React.Component {
                 source={Constants.MID_GOOFY} />
                 </TouchableOpacity>
               </View>}
-
+                   
             {this.state.showEyeImage &&
               <View>
                 <TouchableOpacity onPress={()=>this.selectMidImage(2)}>
@@ -258,7 +254,7 @@ export default class Profile extends React.Component {
                 source={Constants.MID_SCARED} />
                 </TouchableOpacity>
               </View>}
-
+  
             {this.state.showMouthImage &&
               <View>
                 <TouchableOpacity onPress={()=>this.selectBottomImage(0)}>
@@ -267,7 +263,7 @@ export default class Profile extends React.Component {
                 </TouchableOpacity>
 
               </View>}
-
+                      
             {this.state.showMouthImage &&
               <View>
                 <TouchableOpacity onPress={()=>this.selectBottomImage(1)}>
@@ -275,7 +271,7 @@ export default class Profile extends React.Component {
                 source={Constants.BOT_VAMP} />
                 </TouchableOpacity>
               </View>}
-
+                   
           </View>
           <View>
                     <View>
@@ -386,12 +382,7 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 5,
     },
-    editbuttonIcon: {
-      position: "absolute",
-      left: '50%',
-      top: '50%',
-      transform: [{ translateX: -15 },{ translateY: -15 }],
-    },
+
     badgeText: {
         color: "white",
         fontSize: 20,
@@ -400,9 +391,11 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginRight: 15
     },
+
     badgeContainer: {
-        height: 255,
+        height: 250,
     },
+
     streakdisplay: {
         flexDirection: "row",
         justifyContent: 'space-between',
