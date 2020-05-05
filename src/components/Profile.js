@@ -155,9 +155,17 @@ export default class Profile extends React.Component {
                     <Text style={styles.nameText}> { getUserName() } </Text>
                     <View style={styles.streakdisplay}>
                         <View style={styles.streakContainer}>
+                        <Image
+                                style={styles.counterIcon}
+                                source={require('../assets/icons/streak.png')}>
+                            </Image>
                         <Text style={styles.nameText}>{ getStreakCount() }</Text>
                         </View>
                         <View style={styles.streakContainer}>
+                        <Image
+                                style={styles.counterIcon}
+                                source={require('../assets/icons/badges.png')}>
+                            </Image>
                         <Text style={styles.nameText}> { getTotalBadgesAcquired() } </Text>
                         </View>
                     </View>
@@ -398,7 +406,16 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 5,
         marginRight: 30,
-        marginLeft: 30
+        marginLeft: 30,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    counterIcon: {
+      marginLeft: 25,
+      paddingRight: 8,
+      top: 15
+
     },
     button: {
         fontSize: 20,
@@ -421,7 +438,9 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 30,
         alignSelf: "center",
-        padding: 10
+        paddingTop: 10,
+        paddingBottom: 10,
+        marginRight: 25
     },
     ImageIconStyle: {
         width: 130,
