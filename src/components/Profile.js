@@ -8,6 +8,9 @@ import globalStyles from "../styles/global";
 
 import {
     renderWorldBadges,
+    getUserName,
+    getStreakCount,
+    getTotalBadgesAcquired
 } from "../components/Helpers.js";
 import { render } from "react-dom";
 
@@ -145,13 +148,13 @@ export default class Profile extends React.Component {
                             <Button title="" onPress={() => this.toggleEditState()} />
                         </View>
                     </View>
-                    <Text style={styles.nameText}> John Doe </Text>
+                    <Text style={styles.nameText}> { getUserName() } </Text>
                     <View style={styles.streakdisplay}>
                         <View style={styles.streakContainer}>
-
+                        <Text style={styles.nameText}>{ getStreakCount() }</Text>
                         </View>
                         <View style={styles.streakContainer}>
-
+                        <Text style={styles.nameText}> { getTotalBadgesAcquired() } </Text>
                         </View>
                     </View>
                 </View>
