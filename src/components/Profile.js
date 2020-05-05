@@ -9,6 +9,7 @@ import globalStyles from "../styles/global";
 
 import {
     renderWorldBadges,
+    renderAllAcquiredBadges,
     getUserName,
     getStreakCount,
     getTotalBadgesAcquired
@@ -180,22 +181,7 @@ export default class Profile extends React.Component {
                             </View>
                     </View>
                     <ScrollView horizontal={true} style={styles.badgeContainer}>
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
+                        { renderAllAcquiredBadges() }
                     </ScrollView>
                 </View>
                 <TouchableOpacity style={styles.primaryBtn} onPress={() => this.props.navigation.navigate("Lessons")} >
