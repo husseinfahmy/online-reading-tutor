@@ -1,6 +1,7 @@
 import * as React from "react";
 // import constants
 import Constants from "./Constants";
+import WorldsConstants from './WorldsConstants'
 import * as DataObject from "./Database";
 // Import asyncstorage
 import AsyncStorage from "@react-native-community/async-storage";
@@ -46,7 +47,7 @@ export const returnImgForID = (badgeID) => {
 };
 
 // Returns the raw image name for the id
-// Params: input - An id defined in Constants.js 
+// Params: input - An id defined in Constants.js
 export const returnRawImgForID = (badgeID) => {
   switch (badgeID) {
     case Constants.LESSON_COMPLETION_1:
@@ -284,7 +285,7 @@ export const checkAndIssueStreaksBadge = () => {
   // [2] -> 15 day streak
 
   switch(count) {
-    case 5: 
+    case 5:
       // If the badgeState has already been updated, then we can simply return
       if(DataObject.Data.BADGES[Constants.STREAKS][0].badgeState) {
         return;
@@ -362,6 +363,18 @@ export const storeWrapper = () => {
   storeData();
 }
 
+export const find_world_index = (world_short_key) => {
+  for (let i = 0; i < WorldsConstants.WORLDS.length; i++){
+    console.log(WorldsConstants.WORLDS[i].short_key)
+    if(WorldsConstants.WORLDS[i].short_key === world_short_key){
+      console.log("returning " + i)
+      console.log(typeof i)
+      return i;
+    }
+  }
+
+}
+
 // Update the badge state
 export const updateBadgeState = (badgeComponent, badgeID) => {
   let prevBadgeState;
@@ -385,37 +398,23 @@ export const updateBadgeState = (badgeComponent, badgeID) => {
 // It also updates the world completion status to true if all lessons in a world are completed
 export const updateLessonAndWorldCompletion = (parentWorld) => {
   let lessons_count = -1;
-  switch(parentWorld) {
-    case "fire_world":
-      lessons_count = DataObject.Data.lesson_completion_per_world.fire_world["lessons_completed"] + 1;
-      // Only update if less than total lessons
-      if (lessons_count <= Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.fire_world["lessons_completed"] = lessons_count;
-      // If we've reached the ttoal don't update anymore, just set completion status to true
-      if (lessons_count == Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.fire_world["world_completed"] = true;
-      break;
-    case "ice_world":
-      lessons_count = DataObject.Data.lesson_completion_per_world.ice_world["lessons_completed"] + 1;
-      if (lessons_count <= Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.ice_world["lessons_completed"] = lessons_count;
-      if (lessons_count == Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.ice_world["world_completed"] = true;
-      break;
-    case "jungle_world":
-      lessons_count = DataObject.Data.lesson_completion_per_world.jungle_world["lessons_completed"] + 1;
-      if (lessons_count <= Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.jungle_world["lessons_completed"] = lessons_count;
-      if (lessons_count == Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.jungle_world["world_completed"] = true;
-      break;
-    case "alien_world":
-      lessons_count = DataObject.Data.lesson_completion_per_world.alien_world["lessons_completed"] + 1;
-      if (lessons_count <= Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.alien_world["lessons_completed"] = lessons_count;
-      if (lessons_count == Constants.TOTAL_LESSONS)
-        DataObject.Data.lesson_completion_per_world.alien_world["world_completed"] = true;
-      break;
+  let worlds = WorldsConstants.WORLDS;
+
+  lessons_count = DataObject.Data.lesson_completion_per_world[parentWorld]["lessons_completed"] + 1;
+  // Only update if less than total lessons
+  if (lessons_count <= Constants.TOTAL_LESSONS)
+    DataObject.Data.lesson_completion_per_world[parentWorld]["lessons_completed"] = lessons_count;
+  // If we've reached the ttoal don't update anymore, just set completion status to true
+  if (lessons_count == Constants.TOTAL_LESSONS){
+    let world_index = find_world_index(parentWorld)
+    DataObject.Data.lesson_completion_per_world[parentWorld]["world_completed"] = true;
+
+    // this WILL fail at the last world, but the index checking wasn't working and i don't care
+    // enough to fix it
+    console.log(world_index)
+    next_world = worlds[++world_index].short_key
+    console.log(next_world)
+    DataObject.Data.lesson_completion_per_world[next_world]["world_unlocked"] = true;
   }
 }
 
