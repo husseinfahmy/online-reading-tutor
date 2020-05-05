@@ -105,7 +105,6 @@ export default class CarouselCards extends React.Component  {
     }
 
     goToFire = () => {
-      console.log("TEEEST " + this.state.carouselItems[this.state.activeIndex].short_key + " " + this.state.carouselItems[this.state.activeIndex].text + " " + DataObject.Data.lesson_completion_per_world.fire_world["lessons_completed"])
       setCurrentLessonParentWorld(this.state.carouselItems[this.state.activeIndex].short_key);
       this.props.navigation.navigate('Game')
       this.setState({
