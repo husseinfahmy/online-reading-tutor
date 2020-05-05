@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Text, View, SafeAreaView, StyleSheet, ScrollView, Image, Button, ImageBackground, Dimensions, TouchableOpacity } from "react-native";
+import DeviceInfo from "react-native-device-info";
 
 // local components
 import { BottomSheet } from "./index";
@@ -126,6 +127,8 @@ export default class Profile extends React.Component {
       render() {
         const { editMode } = this.state;
         const modalHeight = 2 * (Dimensions.get("screen").height * 0.27);
+        const setHeight = 850
+        const model = DeviceInfo.getModel();
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.topContainer}>
@@ -137,6 +140,7 @@ export default class Profile extends React.Component {
                                 <Image style={styles.eyesBodyPart} source={this.state.Mid[this.state.midImageFinal].image} />
                                 <Image style={styles.mouthbodyPart} source={this.state.Bottom[this.state.bottomImageFinal].image} />
                             </ImageBackground>
+                            <Text style={{color: "white"}}> {model} </Text>
                         </View>
                         <View style={styles.headContainer}>
                             <Image style={styles.headBodyPart} source={this.state.Top[this.state.topImageFinal].image} />
@@ -378,7 +382,7 @@ const styles = StyleSheet.create({
     },
 
     badgeContainer: {
-        height: 220,
+        height: 255,
     },
 
     streakdisplay: {
