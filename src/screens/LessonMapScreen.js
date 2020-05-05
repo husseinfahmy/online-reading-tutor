@@ -27,12 +27,15 @@ const styles = StyleSheet.create({
     },
 });
 function LessonMapScreen({ navigation }) {
+    const [showModal, setShowModal] = React.useState(false);
+
 
     return (
         <View style= { styles.container }>
                 <View>
                     <CarouselCards navigation = {navigation}/>
                     <BottomSheet
+                      onDismiss={() => setShowModal(true)}
                       visible={!true}
                       height={(Dimensions.get("screen").height / 3)}>
                         <Text>Modal Child</Text>

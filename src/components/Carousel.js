@@ -31,7 +31,6 @@ export default class CarouselCards extends React.Component  {
 
     _renderItem({item,index}){
 //        const { navigate } = this.props.navigation.navigate(Game);
-
         return (
           <View style={{
               backgroundColor: WorldsConstants.WORLDS_BG_COLOR,
@@ -47,7 +46,7 @@ export default class CarouselCards extends React.Component  {
               }}>
                   <Image
                     key={item.title}
-                    source={item.icon}
+                    source={DataObject.Data.lesson_completion_per_world[item.short_key]["world_unlocked"] ? item.icon : this.state.carouselItems[3].icon}
                     style={{
                       flex: 1,
                       resizeMode: 'contain',
@@ -68,15 +67,15 @@ export default class CarouselCards extends React.Component  {
                 <Text style={{
                   color: 'white',
                 }}>
-                  {item.text}
+                  {DataObject.Data.lesson_completion_per_world[item.short_key]["lessons_completed"] + "/" + Constants.TOTAL_LESSONS}
                 </Text>
               </View>
               <View style={{ height: Dimensions.get('window').height *0.2}}>
                   <TouchableOpacity
                     style = {[styles.button,
-                              item.unlocked ? styles.button_clickable : styles.button_unclickable]}
+                              DataObject.Data.lesson_completion_per_world[item.short_key]["world_unlocked"] ? styles.button_clickable : styles.button_unclickable]}
                     color="#65269c"
-                    disabled={!item.unlocked}
+                    disabled={!DataObject.Data.lesson_completion_per_world[item.short_key]["world_unlocked"]}
                     onPress= {() =>  this.goToFire()}>
                       <Text style={{ color: 'white' }}>
                         {item.unlocked ? "Explore The "+ item.title : "World Locked"}
@@ -95,8 +94,8 @@ export default class CarouselCards extends React.Component  {
                 layout={"default"}
                 ref={ref => this.carousel = ref}
                 data={this.state.carouselItems}
-                sliderWidth={300}
-                itemWidth={300}
+                sliderWidth={400}
+                itemWidth={200}
                 renderItem={this._renderItem.bind(this)}
                 onSnapToItem = { index => this.setState({activeIndex:index}) }
                 removeClippedSubviews={false} />
@@ -106,6 +105,7 @@ export default class CarouselCards extends React.Component  {
     }
 
     goToFire = () => {
+      setCurrentLessonParentWorld(this.state.carouselItems[this.state.activeIndex].short_key);
       this.props.navigation.navigate('Game')
       this.setState({
         showModal: false
@@ -135,8 +135,10 @@ const styles = StyleSheet.create({
   button_unclickable: {
     backgroundColor: '#888888',
   },
-  countContainer: {
-    alignItems: "center",
-    padding: 10
+  visible: {
+    opacity: 100
+  },
+  hidden: {
+    opacity: 0
   }
 });

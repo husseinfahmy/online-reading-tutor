@@ -29,7 +29,7 @@ export default WorldsConstants = {
     {
         title:"Water World",
         text: DataObject.Data.lesson_completion_per_world.water_world["lessons_completed"] + "/" + Constants.TOTAL_LESSONS,
-        index: 4,
+        index: 3,
         icon: require('../assets/worlds/locked-world.png'),
         unlocked: DataObject.Data.lesson_completion_per_world.water_world["world_unlocked"],
         text: DataObject.Data.lesson_completion_per_world.water_world["lessons_completed"] + "/" + Constants.TOTAL_LESSONS, // TODO: change to state of lessons completion
@@ -39,7 +39,7 @@ export default WorldsConstants = {
     {
         title:"Jungle World",
         text: DataObject.Data.lesson_completion_per_world.jungle_world["lessons_completed"] + "/" + Constants.TOTAL_LESSONS,
-        index: 3,
+        index: 4,
         icon: require('../assets/worlds/locked-world.png'),
         unlocked: DataObject.Data.lesson_completion_per_world.jungle_world["world_unlocked"],
         text: DataObject.Data.lesson_completion_per_world.jungle_world["lessons_completed"] + "/" + Constants.TOTAL_LESSONS, // TODO: change to state of lessons completion
@@ -49,7 +49,7 @@ export default WorldsConstants = {
     {
         title:"Alien World",
         text: DataObject.Data.lesson_completion_per_world.alien_world["lessons_completed"] + "/" + Constants.TOTAL_LESSONS,
-        index: 4,
+        index: 5,
         icon: require('../assets/worlds/locked-world.png'),
         unlocked: DataObject.Data.lesson_completion_per_world.alien_world["world_unlocked"],
         text: DataObject.Data.lesson_completion_per_world.alien_world["lessons_completed"] + "/" + Constants.TOTAL_LESSONS, // TODO: change to state of lessons completion
