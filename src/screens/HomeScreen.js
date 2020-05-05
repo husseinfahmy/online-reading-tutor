@@ -4,7 +4,6 @@ import {
 } from "react-native";
 
 import Profile from "../components/Profile";
-import Footer from "../components/Footer";
 
 // internal components
 import { Button, BottomSheet } from "../components/index";
@@ -34,8 +33,7 @@ const HomeScreen = (props) => {
     return (
       <View style={styles.container}>
        <View>
-        <Profile data={props.data}/>
-        <Footer navigation={props.navigation}/>
+        <Profile data={props.data} navigation={props.navigation}/>
         </View>
       </View>
     );
