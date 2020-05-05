@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
     },
 
     badgeContainer: {
-        height: 255,
+        height: 250,
     },
 
     streakdisplay: {
