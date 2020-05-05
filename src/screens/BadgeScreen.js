@@ -4,7 +4,6 @@ import { Text, View, Button, StyleSheet, Image } from "react-native";
 
 // Export displaybadge component
 import DisplayBadge from "../components/DisplayBadge";
-import Footer from "../components/Footer";
 
 // import styles
 import variables from "../styles/variables";
@@ -43,7 +42,6 @@ const BadgeScreen = (props) => {
       <Text style={styles.title}>Badge Collection</Text>
 
       <DisplayBadge badges={props.badges} />
-      <Footer navigation={props.navigation}/>
 {/*}
       <Button
         title="Click here to go back to home screen"

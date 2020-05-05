@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Text, View, SafeAreaView, StyleSheet, ScrollView, Image, Button, ImageBackground, Dimensions, TouchableOpacity } from "react-native";
+import DeviceInfo from "react-native-device-info";
 
 // local components
 import { BottomSheet } from "./index";
@@ -8,6 +9,7 @@ import globalStyles from "../styles/global";
 
 import {
     renderWorldBadges,
+    renderAllAcquiredBadges,
     getUserName,
     getStreakCount,
     getTotalBadgesAcquired
@@ -129,6 +131,8 @@ export default class Profile extends React.Component {
       render() {
         const { editMode } = this.state;
         const modalHeight = 2 * (Dimensions.get("screen").height * 0.27);
+        const setHeight = 850
+        const model = DeviceInfo.getModel();
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.topContainer}>
@@ -140,6 +144,7 @@ export default class Profile extends React.Component {
                                 <Image style={styles.eyesBodyPart} source={this.state.Mid[this.state.midImageFinal].image} />
                                 <Image style={styles.mouthbodyPart} source={this.state.Bottom[this.state.bottomImageFinal].image} />
                             </ImageBackground>
+                            <Text style={{color: "white"}}> {model} </Text>
                         </View>
                         <View style={styles.headContainer}>
                             <Image style={styles.headBodyPart} source={this.state.Top[this.state.topImageFinal].image} />
@@ -148,38 +153,40 @@ export default class Profile extends React.Component {
                             <Button title="" onPress={() => this.toggleEditState()} />
                         </View>
                     </View>
-                    <Text style={styles.nameText}> { getUserName() } </Text>
+                    <Text style={styles.nameText}> John Doe </Text>
                     <View style={styles.streakdisplay}>
                         <View style={styles.streakContainer}>
+                        <Image
+                                style={styles.counterIcon}
+                                source={require('../assets/icons/streak.png')}>
+                            </Image>
                         <Text style={styles.nameText}>{ getStreakCount() }</Text>
                         </View>
                         <View style={styles.streakContainer}>
+                        <Image
+                                style={styles.counterIcon}
+                                source={require('../assets/icons/badges.png')}>
+                            </Image>
                         <Text style={styles.nameText}> { getTotalBadgesAcquired() } </Text>
                         </View>
                     </View>
                 </View>
                 <View style={styles.badgeContainer}>
+                <View style={{flexDirection: 'row'}}>
                     <Text style={styles.badgeText}> Badges Earned </Text>
+                    <View style={{ marginLeft: 110}} >
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Badges")} >
+                            <Text style={{fontSize: 20, right: 5}, styles.badgeText}> see more ></Text>
+                            </TouchableOpacity>
+                            </View>
+                    </View>
                     <ScrollView horizontal={true} style={styles.badgeContainer}>
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
-                        <Image
-                            source={require("../assets/badges/world_completion.png")}
-                            style={styles.ImageIconStyle}
-                        />
+                        { renderAllAcquiredBadges() }
                     </ScrollView>
                 </View>
-
+                <TouchableOpacity style={styles.primaryBtn} onPress={() => this.props.navigation.navigate("Lessons")} >
+                            <Text style={styles.primaryBtnText}>Start</Text>
+                            </TouchableOpacity>
                 <BottomSheet onDismiss={() => this.toggleEditState()} visible={editMode} height={modalHeight}>
           <View style={styles.tabContainer}>
             <TouchableOpacity onPress={()=>this.showImageFunc()}>
@@ -291,7 +298,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         backgroundColor: variables.palette.blue.primary,
         marginTop: 30,
-        marginBottom: 10,
+        marginBottom: 5,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.5,
         shadowRadius: 5,
@@ -367,7 +374,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 20,
         marginBottom: 20,
-        marginLeft: 15
+        marginLeft: 15,
+        marginRight: 15
     },
 
     badgeContainer: {
@@ -391,7 +399,16 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 5,
         marginRight: 30,
-        marginLeft: 30
+        marginLeft: 30,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    counterIcon: {
+      marginLeft: 25,
+      paddingRight: 8,
+      top: 15
+
     },
     button: {
         fontSize: 20,
@@ -414,11 +431,13 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 30,
         alignSelf: "center",
-        padding: 10
+        paddingTop: 10,
+        paddingBottom: 10,
+        marginRight: 25
     },
     ImageIconStyle: {
-        width: 130,
-        height: 150,
+        width: 100,
+        height: 120,
         margin: 15
     },
     tabContainer: {
@@ -474,5 +493,20 @@ const styles = StyleSheet.create({
         marginTop:80,
         marginRight: 50,
         marginLeft:45,
-      }
+      },
+      primaryBtn: {
+        marginRight: 40,
+        marginLeft: 40,
+        height: "7%",
+        bottom: 0,
+        alignItems: 'center',
+        backgroundColor: variables.palette.blue.primary,
+        borderRadius: 50
+      },
+      primaryBtnText: {
+        color: variables.palette.white.primary,
+        textAlign: "center",
+        marginTop: "3%",
+        fontSize: 18
+      },
 });
