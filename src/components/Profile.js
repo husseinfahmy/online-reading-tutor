@@ -183,8 +183,8 @@ export default class Profile extends React.Component {
                         />
                     </ScrollView>
                 </View>
-                <TouchableOpacity style={globalStyles.primaryBtn} onPress={() => this.props.navigation.navigate("Lessons")} >
-                            <Text style={globalStyles.primaryBtnText}>Start</Text>
+                <TouchableOpacity style={styles.primaryBtn} onPress={() => this.props.navigation.navigate("Lessons")} >
+                            <Text style={styles.primaryBtnText}>Start</Text>
                             </TouchableOpacity>
                 <BottomSheet onDismiss={() => this.toggleEditState()} visible={editMode} height={modalHeight}>
           <View style={styles.tabContainer}>
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         backgroundColor: variables.palette.blue.primary,
         marginTop: 30,
-        marginBottom: 10,
+        marginBottom: 5,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.5,
         shadowRadius: 5,
@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
     },
 
     badgeContainer: {
-        height: 250,
+        height: 220,
     },
 
     streakdisplay: {
@@ -398,7 +398,8 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 5,
         marginRight: 30,
-        marginLeft: 30
+        marginLeft: 30,
+        marginBottom: 25
     },
     button: {
         fontSize: 20,
@@ -421,11 +422,11 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 30,
         alignSelf: "center",
-        padding: 10
+        padding: 5
     },
     ImageIconStyle: {
-        width: 130,
-        height: 150,
+        width: 100,
+        height: 120,
         margin: 15
     },
     tabContainer: {
@@ -481,5 +482,20 @@ const styles = StyleSheet.create({
         marginTop:80,
         marginRight: 50,
         marginLeft:45,
-      }
+      },
+      primaryBtn: {
+        marginRight: 40,
+        marginLeft: 40,
+        height: "7%",
+        bottom: 0,
+        alignItems: 'center',
+        backgroundColor: variables.palette.blue.primary,
+        borderRadius: 50
+      },
+      primaryBtnText: {
+        color: variables.palette.white.primary,
+        textAlign: "center",
+        marginTop: "3%",
+        fontSize: 18
+      },
 });
