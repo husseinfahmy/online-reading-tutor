@@ -9,6 +9,9 @@ import globalStyles from "../styles/global";
 
 import {
     renderWorldBadges,
+    getUserName,
+    getStreakCount,
+    getTotalBadgesAcquired
 } from "../components/Helpers.js";
 import { render } from "react-dom";
 
@@ -152,10 +155,18 @@ export default class Profile extends React.Component {
                     <Text style={styles.nameText}> John Doe </Text>
                     <View style={styles.streakdisplay}>
                         <View style={styles.streakContainer}>
-
+                        <Image
+                                style={styles.counterIcon}
+                                source={require('../assets/icons/streak.png')}>
+                            </Image>
+                        <Text style={styles.nameText}>{ getStreakCount() }</Text>
                         </View>
                         <View style={styles.streakContainer}>
-
+                        <Image
+                                style={styles.counterIcon}
+                                source={require('../assets/icons/badges.png')}>
+                            </Image>
+                        <Text style={styles.nameText}> { getTotalBadgesAcquired() } </Text>
                         </View>
                     </View>
                 </View>
@@ -403,7 +414,15 @@ const styles = StyleSheet.create({
         elevation: 5,
         marginRight: 30,
         marginLeft: 30,
-        marginBottom: 25
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    counterIcon: {
+      marginLeft: 25,
+      paddingRight: 8,
+      top: 15
+
     },
     button: {
         fontSize: 20,
@@ -426,7 +445,9 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 30,
         alignSelf: "center",
-        padding: 5
+        paddingTop: 10,
+        paddingBottom: 10,
+        marginRight: 25
     },
     ImageIconStyle: {
         width: 100,
